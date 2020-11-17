@@ -37,6 +37,46 @@
 
 一般用于多选和场景判断。
 
+按位非：NOT a
+
+| a | NOT a |
+| -- | -- |
+| 0 | 1 |
+| 1 | 0 |
+
+假设有符合属性 CUTE ('0001')， SMART ('0010'), SMALL ('0100')，如果一个动物既有 CUTE, SMART, SMALL 则properties: '01110'。
+
+```javascript
+const CUTE = parseInt('0001', 2)
+const SMART = parseInt('0010', 2)
+const SMALL = parseInt('0100', 2)
+
+class Cat {
+  constructor(properties) {
+    this.properties = properties || 0;
+  }
+  setCute() {
+    this.properties |= CUTE
+  }
+  clearCute() {
+    this.properties &= (~CUTE)
+  }
+  isCute() {
+    return (this.properties & CUTE) !== 0;
+  }
+  setSmart() {
+    this.properties |= SMART
+  }
+  clearSmart() {
+    this.properties &= (~SMART)
+  }
+  isSmart() {
+    return (this.properties & SMART) !== 0;
+  }
+  // ...
+}
+```
+
 
 ```java
 class Solution {
