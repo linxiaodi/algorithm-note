@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    /**
+    * @param {number[]} nums
+    * @param {number} target
+    * @return {number[]}
+    */
+    // var twoSum = function (nums, target) {
+    //   for (let i = 0; i < nums.length - 1; i++) {
+    //     const firstPicked = nums[i];
+    //     for (let j = i + 1; j < nums.length; j++) {
+    //       const secondPicked = nums[j]
+    //       if (firstPicked + secondPicked ===  target) return [i, j]
+    //     }
+    //   }
+    // };
+    var twoSum = function (nums, target) {
+      const map = {};
+      debugger
+      for (let i = 0; i < nums.length; i++) {
+        const val = nums[i];
+        if (val.toString() in map) {
+          return [map[val], i]
+        }
+        map[target - val] = i;
+      }
+    };
+
+    console.log(twoSum([[3,2,4]], 6))
+
+  </script>
+</body>
+
+</html>
