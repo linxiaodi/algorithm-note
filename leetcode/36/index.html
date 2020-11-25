@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var isValidSudoku = function (board) {
+      const rowMaps = [];
+      const columnMaps = [];
+      const boxMaps = [];
+      for (let i = 0;i < 9;i++) {
+        rowMaps.push(new Set())
+        columnMaps.push(new Set())
+      }
+
+      for (let i = 0;i < 3;i++) {
+        boxMaps.push([new Set(), new Set(), new Set()])
+      }
+
+      for (let row = 0; row < 9; row++) {
+        for (let column = 0; column < 9; column++) {
+          const boxColumn = Math.ceil((column + 1) / 3) - 1;
+          const boxRow = Math.ceil((row + 1) / 3) - 1;
+          // 找到第几个Box
+          const hintBoxSet = boxMaps[boxRow][boxColumn];
+          const hintRowSet = rowMaps[row];
+          const hintColumnSet = columnMaps[column];
+          const value = board[row][column];
+          console.log(value)
+          if (value !== '.') {
+            if (hintBoxSet.has(value) || hintRowSet.has(value) || hintColumnSet.has(value)) {
+              return false;
+            }
+            hintBoxSet.add(value);
+            hintRowSet.add(value);
+            hintColumnSet.add(value);
+          }
+        }
+      }
+      return true;
+    };
+
+    isValidSudoku([["5", "3", ".", ".", "7", ".", ".", ".", "."],
+                   ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+                   [".", "9", "8", ".", ".", ".", ".", "6", "."],
+                   ["8", ".", ".", ".", "6", ".", ".", ".", "3"], 
+                   ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]])
+  </script>
+</body>
+
+</html>
