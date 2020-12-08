@@ -119,3 +119,6 @@ var removeNthFromEnd = function(head, n) {
 };
 
 ```
+
+- 时间复杂度：`O(L)`，其中 L 是链表的长度。
+- 空间复杂度：`O(1)`。
